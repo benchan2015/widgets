@@ -1,4 +1,4 @@
-var gulp=require('gulp');
+var gulp = require('gulp');
 var sass = require('gulp-sass');
 
 var runSequence = require('run-sequence');
@@ -12,10 +12,12 @@ gulp.task('sass', function() {
 
 //处理sass
 gulp.task('build', function() {
-     gulp.src(['./src/demo/**'])
+    gulp.src(['./src/demo/**'])
         .pipe(gulp.dest('./build/demo'));
     gulp.src(['./src/lib/**'])
         .pipe(gulp.dest('./build/javascripts'));
+    gulp.src(['./src/images/**'])
+        .pipe(gulp.dest('./build/images'));
     runSequence(['sass']);
 
 });

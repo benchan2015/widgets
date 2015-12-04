@@ -1,0 +1,39 @@
+.ben-datetime {
+    width: 98%;
+    margin: 1%;
+    overflow: hidden;
+    &>ul {
+        width: 300%;
+        margin-left: -100%;
+    }
+    &>ul>li {
+        width: 33.333333333333333333%;
+        height: 100%;
+        float: left;
+    }
+}
+
+.ben-datetime-top {
+    height: 30px;
+    width: 100%;
+    line-height: 30px;
+    color: #999;
+    a {
+        text-align: center;
+        vertical-align: middle;
+        display: inline-block;
+        height: 100%;
+        img {
+            margin: 7px auto;
+        }
+    }
+    .left {
+        width: 10%;
+    }
+    .center {
+        width: 80%;
+    }
+    .right {
+        width: 10%;
+    }
+}

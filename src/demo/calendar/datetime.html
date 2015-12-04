@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>Calendar</title>
+    <link href="../../css/common.css" rel="stylesheet" />
+    <link href="../../css/calendar/base.css" rel="stylesheet" />
+    <link href="../../css/calendar/datetime.css" rel="stylesheet" />
+    <style>
+    #divCalendar {
+        margin: 0px auto;
+    }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="divCalendar"></div>
+    <script type="text/javascript" src="https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/jquery/jquery-1.10.2.min_f2fb5194.js"></script>
+    <script type="text/javascript" src="../../javascripts/calendar/base.js"></script>
+    <script type="text/javascript" src="../../javascripts/calendar/datetime.js"></script>
+    <script type="text/javascript" src="../../javascripts/common/util.js"></script>
+    <script type="text/javascript">
+    var platform='pc'
+    var currentCalendar = new datetime({
+        el: $('#divCalendar'),
+        currentDate: new Date(),
+        platform:platform
+    });
+   
+    showMyInfo();
+    </script>
+</body>
+
+</html>

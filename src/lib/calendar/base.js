@@ -7,7 +7,7 @@
     this.el = this.options.el;
     this.el.html('');
     this.html = '';
-    this.width=this.options.width?this.options.width:'100%';
+    this.width=this.options.width?this.options.width:'';
     this.height=this.options.height?this.options.height:'40px';
     //适用平台，mobile,pc
     this.platform=this.options.platform?this.options.platform:'mobile';
