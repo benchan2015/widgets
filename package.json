@@ -1,0 +1,30 @@
+{
+  "name": "widgets",
+  "version": "0.0.1",
+  "description": "This is chenbin's widgets",
+  "scripts": {
+    "test": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benchan2015/widgets.git"
+  },
+  "keywords": [
+    "widgets"
+  ],
+  "author": "chenbin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/benchan2015/widgets/issues"
+  },
+  "homepage": "https://github.com/benchan2015/widgets#readme",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-ignore": "^2.0.1",
+    "gulp-rimraf": "^0.2.0",
+    "gulp-sass": "^2.1.0",
+    "node-sass": "^3.4.2",
+    "require-dir": "^0.3.0",
+    "run-sequence": "^1.1.5"
+  }
+}
