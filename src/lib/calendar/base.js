@@ -7,6 +7,10 @@
     this.el = this.options.el;
     this.el.html('');
     this.html = '';
+    this.width=this.options.width?this.options.width:'100%';
+    this.height=this.options.height?this.options.height:'40px';
+    //适用平台，mobile,pc
+    this.platform=this.options.platform?this.options.platform:'mobile';
     this.currentDate = this.options.currentDate ? this.options.currentDate : new Date();
     
     this.date = {};
@@ -62,6 +66,8 @@ calendar.prototype._initDate = function() {
 calendar.prototype._initHTML = function() {
     /*初始化头*/
     this.el.addClass('ben-calendar');
+    this.el.width(this.width);
+
     this.html += '<ul> <li>SU</li> <li>MO</li> <li>TU</li> <li>WE</li><li>TH</li> <li>FR</li> <li>SA</li></ul>';
     this.el.append(this.html);
     this.el.find('li:lt(7)').addClass('head');
@@ -99,7 +105,10 @@ calendar.prototype._initHTML = function() {
         }
         this.el.find('ul').append(nextHtml);
     }
-
+    this.el.find('ul').find('li:gt(6)').height(this.height);
+    if(this.platform==='pc'){
+          this.el.find('ul').find('li:gt(6)').css({'cursor':'pointer'});
+    }
 }
 /*添加边框*/
 calendar.prototype._addBorder = function() {
@@ -135,7 +144,8 @@ calendar.prototype._getLastMonthInfo = function() {
 }
 calendar.prototype._bindEvent = function() {
     var self = this;
-    this.el.find('li.currentMonth').on('touchstart', function() {
+    var eventType=this.platform==='pc'?'click':'touchstart';
+    this.el.find('li.currentMonth').on(eventType, function() {
         self.el.find('li.currentMonth').removeClass('selected');
         $(this).addClass('selected');
         self.selectedDate = $(this).attr('data-value');

@@ -21,12 +21,18 @@
     <script type="text/javascript" src="../../javascripts/calendar/base.js"></script>
     <script type="text/javascript" src="../../javascripts/common/util.js"></script>
     <script type="text/javascript">
+    var platform='pc'
     var currentCalendar = new calendar({
         el: $('#divCalendar'),
-        currentDate: new Date()
+        currentDate: new Date(),
+        width:'500px',
+        height:'40px',
+        platform:platform
     });
+
+    var eventType=platform==='pc'?'click':'touchstart'
     /*Get value*/
-    currentCalendar.el.find('li.currentMonth').on('touchstart', function() {
+    currentCalendar.el.find('li.currentMonth').on(eventType, function() {
         console.log(currentCalendar.getValue());
     });
     showMyInfo();
