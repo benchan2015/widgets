@@ -7,7 +7,7 @@
 
 }
 .command ul li{
-	list-style-type: square;
+	list-style-type: none;
 }
 </style>
 <h1>This is a widget libraries</h1>
