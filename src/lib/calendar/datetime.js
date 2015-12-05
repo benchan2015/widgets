@@ -1,20 +1,11 @@
 var datetime = function(options) {
-        this.options = options ? options : {};
-        if (!this.options.el) {
-            console.error('The el must be existed');
-            return;
-        }
-        this.el = this.options.el;
-        this.platform = this.options.platform ? this.options.platform : 'pc';
-        this.eventType = this.platform === 'pc' ? "click" : 'touchstart';
-        this.el.html('');
-        this.currentDate = new Date().Format('yyyy/MM/dd');
-        this._initHTML();
-        this._bindEvent();
+    view.call(this, options);
+    this.currentDate = new Date().Format('yyyy/MM/dd');
+    this._initHTML();
+    this._bindEvent();
 
-        //calendar.call(this, options);
-    }
-    //datetime.prototype = Object.create(calendar.prototype);
+};
+datetime.prototype = Object.create(view.prototype);
 datetime.prototype._initHTML = function() {
     this.el.addClass('ben-datetime');
     var html = '<div class="ben-datetime-top">' + '<a class="left"><img src="../../images/arrow_left.png" /></a><a class="center">2015-11</a><a class="right"><img src="../../images/arrow_right.png" /></a>'
@@ -77,4 +68,4 @@ datetime.prototype._bindEvent = function() {
             self._createCalendar();
         })
     })
-}
+};

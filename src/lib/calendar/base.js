@@ -1,36 +1,18 @@
 ﻿var calendar = function(options) {
-    this.options = options ? options : {};
-    if (!this.options.el) {
-        console.error('The el must be existed');
-        return;
-    }
-    this.el = this.options.el;
-    this.el.html('');
-    this.html = '';
-    this.width=this.options.width?this.options.width:'';
-    this.height=this.options.height?this.options.height:'40px';
-    //适用平台，mobile,pc
-    this.platform=this.options.platform?this.options.platform:'mobile';
+
+    view.call(this, options);
+    this.width = this.options.width ? this.options.width : '';
+    this.height = this.options.height ? this.options.height : '40px';
     this.currentDate = this.options.currentDate ? this.options.currentDate : new Date();
-    
+
     this.date = {};
     this._initDate();
     this._initHTML();
     this._addBorder();
     this._bindEvent();
-    this.isShow = false;
 
 }
-/*显示组件*/
-calendar.prototype.show = function() {
-    this.el.show();
-    this.isShow = true;
-}
-/*隐藏组件*/
-calendar.prototype.hide = function() {
-    this.el.hide();
-    this.isShow = false;
-}
+calendar.prototype = Object.create(view.prototype);
 /*获取值*/
 calendar.prototype.getValue = function() {
     return this.el.find('li.selected').attr('data-value')
@@ -38,31 +20,31 @@ calendar.prototype.getValue = function() {
 
 /*初始化当前日期的信息*/
 calendar.prototype._initDate = function() {
-    //年
-    this.date.year = this.currentDate.getFullYear();
-    //月
-    this.date.month = this.currentDate.getMonth() + 1;
-    //日
-    this.date.date = this.currentDate.getDate();
-    //第一天星期几
-    this.date.day = this.currentDate.getDay();
-    //第一天星期几
-    this.date.firstDay = new Date(this.date.year, this.date.month - 1, 1).getDay();
-    //本月有多少天
-    this.date.totalDays = new Date(this.date.year, this.date.month, 0).getDate();
+        //年
+        this.date.year = this.currentDate.getFullYear();
+        //月
+        this.date.month = this.currentDate.getMonth() + 1;
+        //日
+        this.date.date = this.currentDate.getDate();
+        //第一天星期几
+        this.date.day = this.currentDate.getDay();
+        //第一天星期几
+        this.date.firstDay = new Date(this.date.year, this.date.month - 1, 1).getDay();
+        //本月有多少天
+        this.date.totalDays = new Date(this.date.year, this.date.month, 0).getDate();
 
-    if (this.date.firstDay === 0) {
-        this.date.firstDay = (42 - this.date.totalDays) - (42 - this.date.totalDays) % 7;
         if (this.date.firstDay === 0) {
-            this.date.firstDay = 7;
+            this.date.firstDay = (42 - this.date.totalDays) - (42 - this.date.totalDays) % 7;
+            if (this.date.firstDay === 0) {
+                this.date.firstDay = 7;
+            }
+            this.date.firstDay = this.date.firstDay > 7 ? 7 : this.date.firstDay;
+
         }
-        this.date.firstDay = this.date.firstDay > 7 ? 7 : this.date.firstDay;
+
 
     }
-
-
-}
-/*初始化html*/
+    /*初始化html*/
 calendar.prototype._initHTML = function() {
     /*初始化头*/
     this.el.addClass('ben-calendar');
@@ -87,9 +69,9 @@ calendar.prototype._initHTML = function() {
         if (_month < 10) {
             _month = '0' + _month;
         }
-      
-            this.html += '<li data-clickCount="0" data-value=' + this.date.year + '/' + _month + '/' + _day + ' class="currentMonth">' + i + '</li>';
-       
+
+        this.html += '<li data-clickCount="0" data-value=' + this.date.year + '/' + _month + '/' + _day + ' class="currentMonth">' + i + '</li>';
+
 
     }
     this.el.find('ul').append(this.html);
@@ -106,10 +88,12 @@ calendar.prototype._initHTML = function() {
         this.el.find('ul').append(nextHtml);
     }
     this.el.find('ul').find('li:gt(6)').height(this.height);
-    if(this.platform==='pc'){
-          this.el.find('ul').find('li:gt(6)').css({'cursor':'pointer'});
+    if (this.platform === 'pc') {
+        this.el.find('ul').find('li:gt(6)').css({
+            'cursor': 'pointer'
+        });
     }
-}
+};
 /*添加边框*/
 calendar.prototype._addBorder = function() {
     this.el.find('ul').find('li:gt(6)').each(function() {
@@ -128,7 +112,7 @@ calendar.prototype._addBorder = function() {
         })
 
     });
-}
+};
 /*获取上个月的信息*/
 calendar.prototype._getLastMonthInfo = function() {
     this.lastMonthInfo = {};
@@ -141,13 +125,13 @@ calendar.prototype._getLastMonthInfo = function() {
     }
     //本月有多少天
     this.lastMonthInfo.totalDays = new Date(this.lastMonthInfo.year, this.lastMonthInfo.month, 0).getDate();
-}
+};
 calendar.prototype._bindEvent = function() {
     var self = this;
-    var eventType=this.platform==='pc'?'click':'touchstart';
+    var eventType = this.platform === 'pc' ? 'click' : 'touchstart';
     this.el.find('li.currentMonth').on(eventType, function() {
         self.el.find('li.currentMonth').removeClass('selected');
         $(this).addClass('selected');
         self.selectedDate = $(this).attr('data-value');
     })
-}
+};
